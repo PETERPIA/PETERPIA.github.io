@@ -1,173 +1,743 @@
 <!DOCTYPE html>
-<html>
-  <!-- Html Head Tag-->
-  <head><meta name="generator" content="Hexo 3.8.0">
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content>
-  <meta name="author" content="Lechuan (Peter) Piao">
-  <!-- Open Graph Data -->
-  <meta property="og:title" content="Let’s talk about Process and Thread">
-  <meta property="og:description" content>
-  <meta property="og:site_name" content="To boldly go where no one has gone before">
-  <meta property="og:type" content="article">
-  <meta property="og:image" content="http://yoursite.com">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
-    <link rel="alternate" href="/atom.xml" title="To boldly go where no one has gone before" type="application/atom+xml">
   
-  
-    <link rel="icon" href="/source/favicon.png">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="process,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.Process1.1 fork() By definitions, Process is an independent and scheduable activity (E. Cohen, D. Jofferson). When it is executing certain tasks, which could be executing calculation in parallel (J.">
+<meta name="keywords" content="process">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Let’s talk about Process and Thread">
+<meta property="og:url" content="http://yoursite.com/2019/02/21/post1/index.html">
+<meta property="og:site_name" content="To boldly go where no one has gone before">
+<meta property="og:description" content="1.Process1.1 fork() By definitions, Process is an independent and scheduable activity (E. Cohen, D. Jofferson). When it is executing certain tasks, which could be executing calculation in parallel (J.">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2019/02/21/post1/fork.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/21/post1/forkResult.png">
+<meta property="og:updated_time" content="2019-02-22T07:43:17.306Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Let’s talk about Process and Thread">
+<meta name="twitter:description" content="1.Process1.1 fork() By definitions, Process is an independent and scheduable activity (E. Cohen, D. Jofferson). When it is executing certain tasks, which could be executing calculation in parallel (J.">
+<meta name="twitter:image" content="http://yoursite.com/2019/02/21/post1/fork.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/21/post1/">
+
+
+
+
+
+  <title>Let’s talk about Process and Thread | To boldly go where no one has gone before</title>
   
 
-  <!-- Site Title -->
-  <title>To boldly go where no one has gone before</title>
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
-  <!-- Custom CSS -->
-  
-  <link rel="stylesheet" href="/css/style.light.css">
 
-  <!-- Google Analytics -->
-  
+
+
+
+
 
 </head>
 
-  <body>
-    <!-- Page Header -->
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
 
+  
+  
+    
+  
 
-<header class="site-header header-background" style="background-image: url(/img/default-banner-light.jpg)">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <div class="page-title with-background-image">
-          <p class="title">Let’s talk about Process and Thread</p>
-          <p class="subtitle"></p>
-        </div>
-        <div class="site-menu with-background-image">
-          <ul>
-            
-              <li>
-                <a href="/">
-                  
-                  Home
-                  
-                </a>
-              </li>
-            
-              <li>
-                <a href="/archives">
-                  
-                  Archives
-                  
-                </a>
-              </li>
-            
-              <li>
-                <a href="https://github.com/PETERPIA">
-                  
-                  Github
-                  
-                </a>
-              </li>
-            
-              <li>
-                <a href="mailto:lpia5158@uni.sydney.edu.au">
-                  
-                  Email
-                  
-                </a>
-              </li>
-            
-          </ul>
-        </div>
-      </div>
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">To boldly go where no one has gone before</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
     </div>
+      
+        <h1 class="site-subtitle" itemprop="description">My Tech Life</h1>
+      
   </div>
-</header>
 
-<article>
-  <div class="container typo">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <div class="post-info text-muted">
-          
-            <!-- Author -->
-            <span class="author info">By Lechuan (Peter) Piao</span>
-          
-          <!-- Date -->
-          <span class="date-time info">On
-            <span class="date">2019-02-21</span>
-            <span class="time">15:09:41</span>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/21/post1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lechuan (Peter) Piao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="To boldly go where no one has gone before">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Let’s talk about Process and Thread</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-21T15:32:30+08:00">
+                2019-02-21
+              </time>
+            
+
+            
+
+            
           </span>
-          
-          <!--  Categories  -->
-            <span class="categories info">Under 
 
-<a href="/categories/IT/">IT</a>
-</span>
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
         </div>
-        <!-- Tags -->
-        
-          <div class="post-tags text-muted">
-            Tags: 
+      </header>
+    
 
-<a class="tag" href="/tags/process/">#process</a>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
+      
+      
 
-          </div>
-        
-        <!-- Post Main Content -->
-        <div class="post-content">
-          <h1 id="1-Process"><a href="#1-Process" class="headerlink" title="1.Process"></a>1.Process</h1><h2 id="1-1-fork"><a href="#1-1-fork" class="headerlink" title="1.1 fork()"></a>1.1 fork()</h2><p><font size="4"> By definitions, Process is an independent and scheduable activity (E. Cohen, D. Jofferson). When it is executing certain tasks, which could be executing calculation in parallel (J. T. Donovan S. E. Madnick), as an abstract entity or minimal unit, multiple resources will be allocated and released (P. Denning). <a id="more"></a></font></p>
+      
+        <h1 id="1-Process"><a href="#1-Process" class="headerlink" title="1.Process"></a>1.Process</h1><h2 id="1-1-fork"><a href="#1-1-fork" class="headerlink" title="1.1 fork()"></a>1.1 fork()</h2><p><font size="4"> By definitions, Process is an independent and scheduable activity (E. Cohen, D. Jofferson). When it is executing certain tasks, which could be executing calculation in parallel (J. T. Donovan S. E. Madnick), as an abstract entity or minimal unit, multiple resources will be allocated and released (P. Denning). <a id="more"></a></font></p>
 <p><font size="4"> I merged these three definition to illustrate that the idea of process is defined by the general description, the work it succeeds and the effect it causes around itself. For many abstract notions, this is a good example how definition is made, instead of <em>per genus et differentiam</em>.</font></p>
 <p><font size="4"> How to identify a process? The answer would be PID (Process Identity Number) and PPID (Parent PID). Each process has its own PID and vice versa. </font></p>
-<p><font size="4"> It is only logical that the first process, i.e., the init process, has a PID of 1. In fact, init process is only user process 1, and before that there are process 0 and kernel process 1, during bootstrapping. When init process is fine and working, it will murder process 0 and kernel process 1. We will come back to it later.</font></p>
+<p><font size="4"> It is only logical that the first process, i.e., the init process, has a PID of 1. In fact, init process is only user process 1, and before that there are process 0 and kernel process 1, during bootstrapping. When init process is fine and working, it will murder process 0 and kernel process 1.</font></p>
 <p><font size="4"> The creation of sub-process by its parent process is via fork(). The example code is here:<br><img src="/2019/02/21/post1/fork.png" alt="fork() example"></font></p>
 <p><font size="4"> The result is:<br><img src="/2019/02/21/post1/forkResult.png" alt="fork() result"></font></p>
 <p><font size="4"> We can have 2 conclusions here, using getpid() and getppid(), which meanings are axiomatic. First, fork return PID of its sub-process in parent process and 0 in sub-process. Secondly, the fork() seems to have two return values here, but that is not ture. Since one process success the whole address space, includes process context, process stack, RAM info and etc., from its parent process, father and son process will execute the same code partition, if not specified by return value. </font></p>
-<p><font size="4"> If you are interested, you can use sleep() to block processes temperately. The PID and PPID will vary with the time sequence that father process &amp; son process finish. I have done some experiments but the results I get is different with all other people online. If you get excited, please try it by all means and contact me by Email or Wechat.</font></p>
-<p><font size="4"> Another thing to mention is that in kernel, the sub-process will not ask kernel to copy the physics address on RAM entirely. It’s slow and unnecessary. Copy-on-Write (CoW) method soves this problem. This method allows father&amp;son accessing the same physics memory instead of real copying. If either father or son change this memory, kernel will create a copy to enable writing. In this case, without additional call-on (by exec), process and its sub-process will not have indiviual physical meomry. Cow is not confined to Linux process but used in other applications such as C++ in certain IDE as well.<br></font><br> </p>
+<p><font size="4"> If you are interested, you can use sleep() to block processes temperately. The PID and PPID will vary with the time sequence that father process &amp; son process finish. I have done some experiments but the results I get is different with all other people online. If you are intrigued, please try it by all means and contact me.</font></p>
+<p><font size="4"> Another thing to mention is that in kernel, the sub-process will not ask kernel to copy the physics address on RAM entirely. It’s slow and unnecessary. Copy-on-Write (CoW) method soves this problem. This method allows father&amp;son accessing the same physics memory instead of real copying. If either father or son change this memory, kernel will create a copy to enable writing. In this case, without additional call-on (by exec), process and its sub-process will not have indiviual physical meomry. Cow is not confined to Linux process but used in other applications such as C++ in certain IDE as well.</font></p>
+<h2 id="1-2-exec"><a href="#1-2-exec" class="headerlink" title="1.2 exec"></a>1.2 exec</h2><p><font size="4"> exec is not a function but the name of 6 similar functions.They are execl(), execv(), execle(), execve(), execlp() and execvp() respectively. They are used by a certain process to execute a program by creating sub-process via fork and calls on exec functions. </font></p>
+<p><br> </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/process/" rel="tag"># process</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/20/TestPage/" rel="next" title="TestPage">
+                <i class="fa fa-chevron-left"></i> TestPage
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/22/hello-world/" rel="prev" title="About me">
+                About me <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
 
         </div>
-      </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
   </div>
-</article>
 
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
 
+      
 
-    <!-- Footer -->
-<footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <p class="copyright text-muted">
-          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
-          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
-        </p><p class="copyright text-muted">
-          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
-        </p>
-      </div>
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Lechuan (Peter) Piao">
+            
+              <p class="site-author-name" itemprop="name">Lechuan (Peter) Piao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Process"><span class="nav-number">1.</span> <span class="nav-text">1.Process</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-fork"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 fork()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-exec"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 exec</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
     </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lechuan (Peter) Piao</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
   </div>
-</footer>
 
+  
 
-    <!-- After Footer Scripts -->
-<script src="/js/highlight.pack.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", function(event) {
-    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
-    codeBlocks.forEach(function(block, index) {
-      hljs.highlightBlock(block);
-    });
-  });
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
 </script>
 
-  </body>
-</html>
 
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
