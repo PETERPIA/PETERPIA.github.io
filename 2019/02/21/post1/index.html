@@ -89,7 +89,8 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2019/02/21/post1/fork.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/21/post1/forkResult.png">
-<meta property="og:updated_time" content="2019-02-22T08:08:55.129Z">
+<meta property="og:image" content="http://yoursite.com/2019/02/21/post1/timg.jpeg">
+<meta property="og:updated_time" content="2019-02-22T08:19:03.421Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Let’s talk about Process and Thread">
 <meta name="twitter:description" content="1.Process1.1 fork() By definitions, Process is an independent and scheduable activity (E. Cohen, D. Jofferson). When it is executing certain tasks, which could be executing calculation in parallel (J.">
@@ -335,7 +336,7 @@
 <p><font size="4"> If you are interested, you can use sleep() to block processes temperately. The PID and PPID will vary with the time sequence that father process &amp; son process finish. I have done some experiments but the results I get is different with all other people online. If you are intrigued, please try it by all means and contact me.</font></p>
 <p><font size="4"> Another thing to mention is that in kernel, the sub-process will not ask kernel to copy the physics address on RAM entirely. It’s slow and unnecessary. Copy-on-Write (CoW) method soves this problem. This method allows father&amp;son accessing the same physics memory instead of real copying. If either father or son change this memory, kernel will create a copy to enable writing. In this case, without additional call-on (by exec), process and its sub-process will not have indiviual physical meomry. Cow is not confined to Linux process but used in other applications such as C++ in certain IDE as well.</font></p>
 <h2 id="1-2-exec"><a href="#1-2-exec" class="headerlink" title="1.2 exec"></a>1.2 exec</h2><p><font size="4"> exec is not a function but the name of 6 similar functions.They are execl(), execv(), execle(), execve(), execlp() and execvp() respectively. They are used by a certain process to execute a program by creating sub-process via fork and calls on exec functions. In fact the only system call is execve(), whereas the other 5 functions are library functions which will eventually use execve().</font></p>
-<p><br> </p>
+<p><img src="/2019/02/21/post1/timg.jpeg" alt="I love universe more than human"><br><br> </p>
 
       
     </div>
