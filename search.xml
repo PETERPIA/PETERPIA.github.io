@@ -5,11 +5,10 @@
     <url>%2F2019%2F02%2F27%2Fpost3%2F</url>
     <content type="text"><![CDATA[DefinitionRecursion happens when function calls on itself repeatedly. It is easy to reckon the structure once you know the procedure, without further exploration of the inner stack allocation, memory status and such. I have found these two illustration online. Apologies for one of them is in Chinese, but you will get the gist. An ExampleNevertheless, let’s look at the Solution of Fibonacci Series, given that the first entry is 0 and the second entry is 1. #include &lt;stdio.h&gt; int f(int n) { if (n == 0) return 0; else if (n == 1) return 1; else return f(n-1)+f(n-2); } void main() { int a = 5; printf(&quot;%d\n&quot;,f(a)); } As we can see here, the code is simple for coders to maintain but cost more resources to execute. Comparing to the iteration methods, it is pleasant to look at. In fact, in any recursion, the procedure is not what matters. We should focus on boundary conditions (i.e., initial (or final) values and judging condition) and relationships between entries, which enable the function getting closer to the solution. It is easier said than done, because sometimes a little mathematical analysis will be needed. Another ExampleHere is another example on calculating binomial expression. #include &lt;stdio.h&gt; int bino(int k,int n) { if (k&gt;n/2) k=n-k; if (k==0||n==1) return 1; else return bino(k,n-1)+bino(k-1,n-1); } int main() { int k,n; scanf(&quot;%d%d&quot;,&amp;k,&amp;n); printf(&quot;%d&quot;,bino(k,n)); return 0; } Source: https://blog.csdn.net/mtasflash/article/details/54412197 Not only do we need to find out that C[n,k] = C[n-1, k]+C[n-1, k-1] to solve this problem, we need to know that every binomial expression can be defined by C[i,0] and C[1,j], where j = {0,1} and i = n-k. This means if k =0 or n =1, the expansion reached its peaks and begins the backward process of recursion]]></content>
       <categories>
-        <category>Tech</category>
+        <category>IT</category>
       </categories>
       <tags>
-        <tag>IT</tag>
-        <tag>Algorithm</tag>
+        <tag>algorithm</tag>
       </tags>
   </entry>
   <entry>
