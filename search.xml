@@ -38,7 +38,7 @@
   <entry>
     <title><![CDATA[About this blog]]></title>
     <url>%2F2019%2F02%2F16%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Hello, my friends. I am Lechuan Piao, call me Peter if you will. Welcome to my world. I would like to list the toolchains I have implemented to build this blog, so that I may impart experiences and aslo keep a record of what I have done for I have a limited memory :-) Basic StructureGithub Page is my host server and corresponding Github is the repository; Tencent Cloud is my .xyz DNS provider; hexo is the blog framework I use; aerodual and next is my favorite two themes; comment system is provided by LeanCloud, Markdown language is for editing blog content. Dependencies]]></content>
+    <content type="text"><![CDATA[Hello, my friends. I am Lechuan Piao, call me Peter if you will. Welcome to my world. I would like to list the toolchains I have implemented to build this blog, so that I may impart experiences and aslo keep a record of what I have done for I have a limited memory :-) Basic StructureGithub Page is my host server and corresponding Github is the repository; Tencent Cloud is my .xyz DNS provider; hexo is the blog framework I use; aerodual and next is my favorite two themes; comment system is provided by LeanCloud, Markdown language is for editing blog content. DependenciesNodejs, npm,]]></content>
       <categories>
         <category>Introduction</category>
       </categories>
