@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[post5_Womens_Day]]></title>
-    <url>%2F2019%2F03%2F07%2Fpost5-Womens-Day%2F</url>
-    <content type="text"><![CDATA[Man, are you capable of being just? It is a woman who poses the question; you will not deprive her of that right at least. Tell me, what gives you sovereign empire to oppress my sex? Your strength? Your talents? Observe the Creator in his wisdom; survey in all her grandeur that nature with whom you seem to want to be in harmony, and give me, if you dare, an example of this tyrannical empire. Go back to animals, consult the elements, study plants, finally glance at all the modifications of organic matter, and surrender to the evidence when I offer you the means; search, probe, and distinguish, if you can, the sexes in the administration of nature. Everywhere you will find them mingled; everywhere they cooperate in harmonious togetherness in this immortal masterpiece.]]></content>
-  </entry>
-  <entry>
     <title><![CDATA[Abstract Data Types: Array and Structure]]></title>
     <url>%2F2019%2F03%2F04%2Fpost4%2F</url>
     <content type="text"><![CDATA[Many programmers view array as a continuous memory area, which included me. Truth is, that is not all of it, merely the implementation part. Intuitively, every index of the array should have one and only one corresponding value. This process is called mapping (or correspondence) and the corresponding value is the data object. For example, myDataObject = {apple, chair, 2, 5.2, red, green, Jack} Note that these objects may or may not be related. Now let’s look upon the implementation of Abstract Data Type (ADT) array. The compiler allocate 5]]></content>
